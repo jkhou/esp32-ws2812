@@ -1,0 +1,38 @@
+{
+  "name": {
+    "zh-cn": "自制的WS2812模块",
+    "en": "my LED modular"
+  },
+  "description": {
+    "zh-cn": "该模块用于绘制矩形点阵，并在LED板上展示绘制出的精美图形",
+    "en": "LED modular"
+  },
+  "author": "CoCube",
+  "email": "me_wyx@sjtu.edu.cn && sparklehjk@sjtu.edu.cn",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "myLED",
+  "version": "1.0.2",
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
+  "asset": {
+    "arduinoC": {
+      "dir": "arduinoC/",
+      "version": "1.0.2",
+      "board": [
+        "firebeetleesp32"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/firebeetleesp32.json",
+        "main.ts",
+        "libraries/libraries.zip"
+      ]
+    }
+  }
+}
