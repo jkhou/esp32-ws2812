@@ -51,7 +51,7 @@ namespace oled12864 {
     export function setColor2(parameter: any, block: any) {
         // let color = parameter.COLOR.code;    
         Generator.addObject(`myoled`, `uint32_t`, `color=${parameter.COLOR.code};`);
-
+        Generator.addObject(`myoled6`, `uint32_t`, `color_black = 0x000000;`);
     }
 
 
@@ -65,6 +65,7 @@ namespace oled12864 {
         Generator.addInclude('oled12864', '#include <DFRobot_NeoPixel.h>');
         Generator.addObject(`myoled2`, `DFRobot_NeoPixel`, `neoPixel;`);
         Generator.addObject(`myoled3`, `int`, `num=${str};`);
+        Generator.addObject(`myoled4`, `char`, `matrix[64]`);
 
         Generator.addSetup(`myoled.begin`, `neoPixel.begin(${io}, ${str});`);
         // Generator.addCode(`myoled.setCursorLine(${io});\n\tmyoled.printLine(${str});`);
@@ -81,12 +82,24 @@ namespace oled12864 {
         ]
     }
 
-    //% block="设置点阵 [MT]" blockType="command"
+    //% block="初次设置点阵 [MT]" blockType="command"
     //% MT.shadow="matrix" MT.params.row=8 MT.params.column=8 MT.defl="0101011111111110111000100"
     //% MT.params.builtinFunc="getBuiltinFunc_" 
     export function setMatrix(parameter: any, block: any) {
         let matrix = parameter.MT.code;
         Generator.addCode(`char matrix[] = "${matrix}";`);
+        Generator.addCode(`for (int i=0; i<num; i++) {\n\tif (matrix[i] == '1') {\n\t\tneoPixel.setRangeColor(i, i, color);\n\t}
+            else {
+                neoPixel.setRangeColor(i, i, color_black);
+            }}`)    
+    }
+
+    //% block="再次设置点阵 [MT]" blockType="command"
+    //% MT.shadow="matrix" MT.params.row=8 MT.params.column=8 MT.defl="0101011111111110111000100"
+    //% MT.params.builtinFunc="getBuiltinFunc_" 
+    export function setMatrix2(parameter: any, block: any) {
+        let matrix = parameter.MT.code;
+        Generator.addCode(`matrix = "${matrix}";`);
         Generator.addCode(`for (int i=0; i<num; i++) {\n\tif (matrix[i] == '1') {\n\t\tneoPixel.setRangeColor(i, i, color);\n\t}\n}`)    
     }
 

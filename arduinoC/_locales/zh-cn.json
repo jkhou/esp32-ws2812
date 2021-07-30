@@ -2,7 +2,8 @@
     "oled12864.initRGB|block": "初始化 RGB灯 引脚 [IO] 灯总数 [STR]",
 
     "oled12864.setColor2|block": "RGB灯 设置颜色 [COLOR]",
-    "oled12864.setMatrix|block": "设置点阵 [MT]",
+    "oled12864.setMatrix|block": "初次设置点阵 [MT]",
+    "oled12864.setMatrix2|block": "再次设置点阵 [MT]",
     "oled12864.setLight|block": "设置亮度 [STR]",
 
 
